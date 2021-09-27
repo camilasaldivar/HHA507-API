@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 24 16:48:06 2021
+
+@author: camilasaldivar
+"""
+
+import requests
+import pandas as pd
+
+##Get Request for healthcare.gov index 
+
+##Getting metadata from the glossary on healthcare.gov
+jsonResponse = requests.get('https://www.healthcare.gov/api/index.json')
+
+##Check for 200 message
+jsonResponse.status_code
+jsonResponse.json()
+
+## Get request for information on CHIP 
+jsonResponse2 = requests.get('https://www.healthcare.gov/glossary/childrens-health-insurance-program-chip.json')
+dataframe=pd.DataFrame(jsonResponse2.json())
+
+##Get glossary for CHIP 
+jsonResponse3 = requests.get('https://www.healthcare.gov/glossary/childrens-health-insurance-program-chip.json')
+jsonResponse3 =jsonResponse3.json()
+
+Information from columm within the dataframe 
+jsonResponseexperience = jsonResponse3['experience']
+
